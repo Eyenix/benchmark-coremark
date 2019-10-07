@@ -35,7 +35,7 @@ OUTFLAG= -o
 PORT_CFLAGS = -O3 -DPERFORMANCE_RUN=1 -DMAIN_HAS_NOARGC=1 -DHAS_STDIO -DHAS_PRINTF -DHAS_TIME_H -DUSE_CLOCK -DHAS_FLOAT=1
 
 # Turn of the maybe-unitialized warning to pacify -Wall -Wextra -Wpedantic -Werror on code we can't control
-PORT_CFLAGS += -Wno-maybe-uninitialized
+PORT_CFLAGS += -Wno-maybe-uninitialized -fno-zero-initialized-in-bss
 
 FLAGS_STR = "$(PORT_CFLAGS) $(XCFLAGS) $(XLFLAGS) $(LFLAGS_END)"
 override CFLAGS += $(PORT_CFLAGS) -I$(PORT_DIR) -I. -DFLAGS_STR=\"$(FLAGS_STR)\" -Xlinker --defsym=__stack_size=0x1000
